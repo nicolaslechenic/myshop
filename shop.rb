@@ -5,7 +5,7 @@ cash_register = CashRegister.new
 
 ARGF.each do |argument|
   argument = argument.chomp
-  return if argument == "quit"
+  break if argument == "quit"
 
   argument.split(",").each do |name|
     name.strip!
