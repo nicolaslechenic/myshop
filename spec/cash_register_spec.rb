@@ -32,14 +32,9 @@ RSpec.describe CashRegister do
     it "return the expected total with discounts" do
       cr = CashRegister.new
 
-      cr << Product.new("Mele")
-      cr << Product.new("Apples")
-      cr << Product.new("Apples")
-      cr << Product.new("Pommes")
-      cr << Product.new("Apples")
-      cr << Product.new("Mele")
-      cr << Product.new("Cerises")
-      cr << Product.new("Cerises")
+      %w(Mele Apples Apples Pommes Apples Mele Cerises Cerises).each do |fruit|
+        cr << Product.new(fruit)
+      end
 
       expect(cr.total).to eql(580)
     end
