@@ -1,3 +1,6 @@
 plugins:
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Cop/Style/StringLiterals:
+        enabled: false

@@ -11,7 +11,6 @@ PRODUCTS = {
   "Cerises" => 75
 }
 
-total = 0
 cash_register = CashRegister.new
 
 ARGF.each do |argument|

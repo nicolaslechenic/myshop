@@ -7,7 +7,7 @@ class CashRegister
     @products = []
     @counter = {}
 
-    Product::LIST.each { |k, _| @counter[k] = 0 }
+    Product::LIST.each_key { |k| @counter[k] = 0 }
   end
 
   def total
@@ -15,14 +15,16 @@ class CashRegister
   end
 
   def <<(product)
-    @counter[product.name] += 1 
+    @counter[product.name] += 1
     @products << product
   end
-  alias_method :push, :<<
+  alias :push, :<<
 
   private
+  
   def discount
-    discount_cherries + discount_bananas + discount_apples_en + discount_apples_it
+    (discount_cherries + discount_bananas + 
+      discount_apples_en + discount_apples_it)
   end
 
   def discount_cherries
