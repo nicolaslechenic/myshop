@@ -6,3 +6,5 @@ source "https://rubygems.org"
 gem "pry"
 # Testing framework
 gem "rspec"
+
+gem "rubocop"

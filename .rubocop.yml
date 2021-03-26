@@ -1,3 +1,2 @@
-AllCops:
-  Style/StringLiterals/EnforcedStyle:
-    Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
