@@ -5,23 +5,17 @@ require "cash_register"
 RSpec.describe CashRegister do
   it "return the expected count of products" do
     cr = CashRegister.new
-    apple = Product.new("Pommes")
-    cherry = Product.new("Cerises")
 
-    cr << apple
-
+    cr << Product.new("Pommes")
     expect(cr.products.count).to eql(1)
 
-    cr << cherry
-
+    cr << Product.new("Cerises")
     expect(cr.products.count).to eql(2)
   end
 
   describe "#total" do
     it "return the expected total without discount" do
       cr = CashRegister.new
-      apple = Product.new("Pommes")
-      cherry = Product.new("Cerises")
 
       cr << Product.new("Pommes")
       cr << Product.new("Cerises")
