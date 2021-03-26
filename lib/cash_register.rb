@@ -22,7 +22,7 @@ class CashRegister
   private
 
   def discount
-    (discount_cherries + discount_bananas + 
+    (discount_cherries + discount_bananas +
       discount_apples_en + discount_apples_it)
   end
 

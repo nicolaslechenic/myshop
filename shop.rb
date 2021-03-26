@@ -7,7 +7,7 @@ ARGF.each do |argument|
   argument = argument.chomp
   return if argument == "quit"
 
-  argument.split(",").each do |name|  
+  argument.split(",").each do |name|
     name.strip!
     product = Product.new(name)
     cash_register << product
