@@ -18,10 +18,9 @@ class CashRegister
     @counter[product.name] += 1
     @products << product
   end
-  alias :push, :<<
 
   private
-  
+
   def discount
     (discount_cherries + discount_bananas + 
       discount_apples_en + discount_apples_it)
