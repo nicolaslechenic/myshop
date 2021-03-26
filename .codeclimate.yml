@@ -1,6 +1,5 @@
 plugins:
   rubocop:
     enabled: true
-    checks:
-      Rubocop/Cop/Style/StringLiterals:
-        enabled: false
+    config:
+      file: .rubocop.yml
