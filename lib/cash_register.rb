@@ -14,6 +14,11 @@ class CashRegister
     total_without_discount - discount
   end
 
+  def clear
+    @products = []
+    Product::LIST.each_key { |k| @counter[k] = 0 }
+  end
+
   def <<(product)
     @counter[product.name] += 1
     @products << product

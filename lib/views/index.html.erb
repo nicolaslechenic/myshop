@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caisse enregistreuse</title>
+</head>
+<body>
+  <h1>Caisse enregistreuse</h1>
+  
+  <span>Total : <%= total if total %></span>
+  
+  <form action="/add" method="post">
+    <input type="text" name="fruits">
+    <br/>
+    <input type="submit" value="Scanner un article">
+  </form>
+
+  <form action="/clear" method="post">
+    <input type="submit" value="Vider le panier">
+  </form>
+
+   
+  <% products.each do |product| %>
+    <p><%= product.name  %></p>
+  <% end %>
+ 
+</body>
+</html>
