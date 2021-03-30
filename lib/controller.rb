@@ -10,8 +10,15 @@ class Controller
   def index
     @products = cash_register.products
     @total = cash_register.total
+    @list = Product::all
 
-    render({products: @products, total: @total})
+    render({products: @products, total: @total, list: @list})
+  end
+
+  def list
+    @products = Product::all
+
+    render({ products: @products })
   end
 
   def add
@@ -19,7 +26,7 @@ class Controller
 
     arguments.split(",").each do |name|
       name.strip!
-      product = Product.new(name)
+      product = Product::find_by_name(name)
       cash_register << product
     end
 

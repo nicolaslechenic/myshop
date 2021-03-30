@@ -1,34 +1,27 @@
 require "sqlite3"
 
 class Product
-  LIST = {
-    "Bananes" => 150,
-    "Cerises" => 75,
-    "Apples" => 100,
-    "Mele" => 100,
-    "Pommes" => 100
-  }.freeze
-
   def self.dbCnx
     @dbCnx ||= SQLite3::Database.new("./myshopDB.db")
     @dbCnx.results_as_hash = true
     @dbCnx
   end
 
-  def self.list
-    list = {}
-    dbCnx.execute( "SELECT * FROM products" ) do |row|
-      list[row["name"]] = row["price"]
+  def self.all
+    dbCnx.execute( "SELECT * FROM products").map do |row|
+      self.new(name: row["name"], price: row["price"])
     end
-    list
   end
 
-  attr_reader :name
-  def initialize(name)
+  def self.find_by_name(name)
+    product = dbCnx.execute("SELECT name, price FROM products WHERE name='#{name}' LIMIT 1").first
+
+    self.new(name: product["name"], price: product["price"])
+  end
+
+  attr_reader :name, :price
+  def initialize(name:, price:)
     @name = name
-  end
-
-  def price
-    LIST[@name]
+    @price = price
   end
 end

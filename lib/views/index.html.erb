@@ -12,7 +12,12 @@
   <span>Total : <%= total if total %></span>
   
   <form action="/add" method="post">
-    <input type="text" name="fruits">
+    <select name="fruits">
+      <option value="">--Produits--</option>
+      <% list.each do |product| %>
+        <option value="<%= product.name  %>"><%= product.name  %></option>
+      <% end %>
+    </select>
     <br/>
     <input type="submit" value="Scanner un article">
   </form>
