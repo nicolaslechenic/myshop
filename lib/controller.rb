@@ -1,3 +1,5 @@
+require 'json'
+
 require "tilt"
 require "erb"
 
@@ -18,7 +20,7 @@ class Controller
   def list
     @products = Product::all
 
-    render({ products: @products })
+    render_json({ products: @products })
   end
 
   def add
@@ -60,6 +62,14 @@ class Controller
         self, 
         params
       )
+    ]  
+  end
+
+  def render_json(params, code=200)
+    [
+      code, 
+      {"Content-Type" => "application/json"}, 
+      [params.to_json]
     ]  
   end
 

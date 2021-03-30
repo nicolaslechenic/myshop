@@ -14,6 +14,8 @@ class Router
     case path
     when "/"
       controller.index
+    when "/list"
+      controller.list
     when "/add"
       controller.add
     when "/clear"

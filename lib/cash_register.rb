@@ -32,23 +32,19 @@ class CashRegister
   end
 
   def discount_cherries
-    0
-    #@counter["Cerises"] / 2 * CHERRY_DISCOUNT
+    @counter["Cerises"] / 2 * CHERRY_DISCOUNT
   end
 
   def discount_bananas
-    0
-    #@counter["Bananes"] / 2 * Product::find_by_name("Bananes")
+    @counter["Bananes"] / 2 * Product::find_by_name("Bananes").price
   end
 
   def discount_apples_en
-    0
-    #@counter["Apples"] / 3 *  Product::find_by_name("Apples")
+    @counter["Apples"] / 3 *  Product::find_by_name("Apples").price
   end
 
   def discount_apples_it
-    0
-   # @counter["Mele"] / 2 * MELE_DISCOUNT
+    @counter["Mele"] / 2 * MELE_DISCOUNT
   end
 
   def total_without_discount
