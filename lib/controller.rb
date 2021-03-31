@@ -1,5 +1,4 @@
-require 'json'
-
+require "json"
 require "tilt"
 require "erb"
 
