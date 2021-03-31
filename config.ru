@@ -1,3 +1,4 @@
+require "sqlite3"
 require "rack"
 require "thin"
 load "router.rb"

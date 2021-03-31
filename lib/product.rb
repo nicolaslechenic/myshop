@@ -8,7 +8,7 @@ class Product
   end
 
   def self.all
-    dbCnx.execute( "SELECT * FROM products") do |row|
+    dbCnx.execute("SELECT name, price FROM products").map do |row|
       self.new(name: row["name"], price: row["price"])
     end
   end
