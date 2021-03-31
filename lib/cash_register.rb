@@ -1,4 +1,3 @@
-
 class CashRegister
   CHERRY_DISCOUNT = 20
   MELE_DISCOUNT = 50
