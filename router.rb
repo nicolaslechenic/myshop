@@ -7,16 +7,21 @@ class Router
 
   def call(env)
     path = env["REQUEST_PATH"]
-    req = Rack::Request.new(env)
+    params = Rack::Request.new(env).params
 
-    controller.params = req.params
-
-    if path == "/"
+    controller.params = params
+    
+    case path
+    when "/"
       controller.index
-    elsif path == "/scan"
-      controller.scan
-    else 
+    when "/list"
+      controller.list
+    when "/add"
+      controller.add
+    when "/clear"
+      controller.clear
+    else
       controller.not_found
-    end
+    end 
   end
 end

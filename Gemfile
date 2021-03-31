@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
 # REPL => Read Eval Print Loop
@@ -16,3 +14,5 @@ gem "erb"
 gem "rack"
 # Ruby web server
 gem "thin"
+# Interface of SQLite3 database engine 
+gem "sqlite3"

@@ -8,11 +8,16 @@ class CashRegister
     @products = []
     @counter = {}
 
-    Product::LIST.each_key { |k| @counter[k] = 0 }
+    Product::all.each { |product| @counter[product.name] = 0 }
   end
 
   def total
     total_without_discount - discount
+  end
+
+  def clear
+    @products = []
+    Product::all.each { |product| @counter[product.name] = 0 }
   end
 
   def <<(product)
@@ -32,11 +37,11 @@ class CashRegister
   end
 
   def discount_bananas
-    @counter["Bananes"] / 2 * Product::LIST["Bananes"]
+    @counter["Bananes"] / 2 * Product::find_by_name("Bananes").price
   end
 
   def discount_apples_en
-    @counter["Apples"] / 3 * Product::LIST["Apples"]
+    @counter["Apples"] / 3 *  Product::find_by_name("Apples").price
   end
 
   def discount_apples_it

@@ -1,52 +1,78 @@
+require "json"
 require "tilt"
 require "erb"
 
-require "pry"
-
 require "./lib/cash_register"
 require "./lib/product"
-
 
 class Controller
   attr_accessor :params
 
   def index
-    total = cash_register.total
-    products = cash_register.products
+    @products = cash_register.products
+    @total = cash_register.total
+    @list = Product::all
 
-    render "index", total: total, products: products
+    render({products: @products, total: @total, list: @list})
   end
 
-  def scan  
-    params["fruits"].split(",").each do |name|
+  def list
+    @products = Product::all
+
+    render_json({ products: @products })
+  end
+
+  def add
+    arguments = params["fruits"]
+
+    arguments.split(",").each do |name|
       name.strip!
-      product = Product.new(name)
+      product = Product::find_by_name(name)
       cash_register << product
     end
 
-    redirect "/"
+    redirect("/")
+  end
+
+  def clear
+    cash_register.clear
+
+    redirect("/")
   end
 
   def not_found
-    template = Tilt.new("not_found.html.erb")
-
-    [404, {"Content-Type" => "text/html"}, template.render]
+    render({}, 404)
   end
 
   private
 
   def cash_register
-    # memoization
     @cash_register ||= CashRegister.new
   end
 
-  def render(target, **view_params)
-    template = Tilt.new("#{target}.html.erb")
+  def render(params, code=200)
+    file = caller_locations(1,1)[0].label
+    template = Tilt.new("./lib/views/#{file}.html.erb")
 
-    [code, {"Content-Type" => "text/html"}, template.render(self, view_params)]
+    [
+      code, 
+      {"Content-Type" => "text/html"}, 
+      template.render(
+        self, 
+        params
+      )
+    ]  
+  end
+
+  def render_json(params, code=200)
+    [
+      code, 
+      {"Content-Type" => "application/json"}, 
+      [params.to_json]
+    ]  
   end
 
   def redirect(to)
-    [302, {"Location" => to}, []]
+    [302, {'Location' => to}, []]
   end
 end

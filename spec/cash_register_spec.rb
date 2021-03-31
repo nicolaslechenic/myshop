@@ -14,6 +14,11 @@ RSpec.describe CashRegister do
   end
 
   describe "#total" do
+    it "return zero for new instance" do
+      cr = CashRegister.new
+      expect(cr.total).to eql(0)
+    end
+    
     it "return the expected total without discount" do
       cr = CashRegister.new
 
@@ -31,6 +36,19 @@ RSpec.describe CashRegister do
       end
 
       expect(cr.total).to eql(580)
+    end
+  end
+
+  describe "#clear" do
+    it "return the expected total without discount" do
+      cr = CashRegister.new
+
+      cr << Product.new("Pommes")
+      cr << Product.new("Cerises")
+
+      cr.clear
+
+      expect(cr.total).to eql(0)
     end
   end
 end
