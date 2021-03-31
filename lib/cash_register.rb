@@ -3,6 +3,7 @@ class CashRegister
   MELE_DISCOUNT = 50
 
   attr_reader :products, :counter
+
   def initialize
     @products = []
     @counter = {}
@@ -28,7 +29,7 @@ class CashRegister
 
   def discount
     (discount_cherries + discount_bananas +
-      discount_apples_en + discount_apples_it)
+     discount_apples_en + discount_apples_it)
   end
 
   def discount_cherries
