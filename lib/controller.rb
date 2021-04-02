@@ -13,7 +13,10 @@ class Controller
     @total = cash_register.total
     @list = Product::all
 
-    render({products: @products, total: @total, list: @list})
+    @list = @list.map { |l| {"name" => l.name, "price" => l.price} }
+    @products = @products.map { |l| {"name" => l.name, "price" => l.price} }
+
+    render_json({ products: @products, total: @total, list: @list })
   end
 
   def list
@@ -31,7 +34,7 @@ class Controller
       cash_register << product
     end
 
-    redirect("/")
+    render_json({})
   end
 
   def clear

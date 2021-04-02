@@ -16,3 +16,5 @@ gem "rack"
 gem "thin"
 # Interface of SQLite3 database engine 
 gem "sqlite3"
+
+gem "rack-cors", require: "rack/cors"

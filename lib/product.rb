@@ -4,6 +4,7 @@ class Product
   def self.dbCnx
     @dbCnx ||= SQLite3::Database.new("./myshopDB.db")
     @dbCnx.results_as_hash = true
+    
     @dbCnx
   end
 
