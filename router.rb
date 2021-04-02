@@ -7,7 +7,13 @@ class Router
 
   def call(env)
     path = env["REQUEST_PATH"]
-    params = Rack::Request.new(env).params
+    req = Rack::Request.new(env)
+    params = {}
+
+    binding.pry
+    # params.merge!(req.params)
+    params.merge!(JSON.parse(req.body.read))
+    
 
     controller.params = params
     
@@ -17,6 +23,7 @@ class Router
     when "/list"
       controller.list
     when "/add"
+      binding.pry
       controller.add
     when "/clear"
       controller.clear
