@@ -13,6 +13,7 @@ class Controller
     @total = cash_register.total
     @list = Product::all
 
+    @products = @products.map { |l| { name: l.name } }
     @list = @list.map { |l| { name: l.name, price: l.price } }
 
     render_json({products: @products, total: @total, list: @list})
