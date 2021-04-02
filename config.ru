@@ -1,3 +1,4 @@
+require "pry"
 require "sqlite3"
 require "rack"
 require "thin"
