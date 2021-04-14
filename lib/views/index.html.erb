@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/styles.css">
   <title>Caisse enregistreuse</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
     <select name="fruits">
       <option value="">--Produits--</option>
       <% list.each do |product| %>
-        <option value="<%= product.name  %>"><%= product.name  %></option>
+        <option value="<%= product.name  %>"><%= product.name %></option>
       <% end %>
     </select>
     <br/>
@@ -30,6 +31,5 @@
   <% products.each do |product| %>
     <p><%= product.name  %></p>
   <% end %>
- 
 </body>
 </html>

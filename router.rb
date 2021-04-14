@@ -1,4 +1,6 @@
 require "./lib/controller"
+require "pry"
+
 
 class Router
   def controller
@@ -12,7 +14,7 @@ class Router
     params = {}
 
     params.merge!(req.params)
-    params.merge!(body ? JSON.parse(body) : {})
+    params.merge!(body ? JSON.parse(body) : {}) if req.params.empty?
 
     controller.params = params
     

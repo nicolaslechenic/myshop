@@ -5,6 +5,7 @@ require "rack/cors"
 require "thin"
 load "router.rb"
 
+
 use Rack::Cors do
   allow do
     origins '*'
@@ -17,6 +18,9 @@ end
 
 handler = Rack::Handler::Thin
 handler.run(
-  Router.new, 
+  Rack::Builder.new {
+  use(Rack::Static, urls: ["/images", "/css"], root: "/assets")
+    run lambda { |env| Router.new.(env) }
+  }, 
   Port: 7373
 )

@@ -19,6 +19,7 @@ class Controller
     render_json({ products: @products, total: @total, list: @list })
   end
 
+
   def list
     @products = Product::all
 
@@ -34,7 +35,7 @@ class Controller
       cash_register << product
     end
 
-    render_json({})
+    redirect("/")
   end
 
   def clear
